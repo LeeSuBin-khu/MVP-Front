@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, signOut } from 'firebase/auth';
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, onValue } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDFMMpu-eTGrbpW3Ruu-G2ZMfwaioRCsYw",
@@ -28,6 +28,8 @@ const signInWithGoogle = async () => {
         authProvider: "google",
         email: user.email,
     })
+
+   
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -73,6 +75,27 @@ const logout = () => {
   signOut(auth);
 };
 
+const bannerDetail = () => {
+    const starCountRef = ref(db, 'Banner/Banner1');
+    onValue(starCountRef, (snapshot) => {
+    const data = snapshot.val();
+    console.log(data);
+  });
+  // ref(db, 'users/').once("value")
+  // .then(function(snapshot) {
+  //   var key = snapshot.key; // "ada"
+  //   // var childKey = snapshot.child("name/last").key; // "last"
+  //   return key;
+  // });
+
+  // var ref = firebase.database().ref("users/");
+  // ref.once("value")
+  // .then(function(snapshot) {
+  //   var key = snapshot.key; // "ada"
+  //   var childKey = snapshot.child("name").key; // "last"
+  // });
+};
+
 export {
   auth,
   db,
@@ -81,4 +104,5 @@ export {
   registerWithEmailAndPassword,
   sendPasswordResetEmail,
   logout,
+  bannerDetail,
 };
