@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import "../../../assets/css/corporation/banner/detail.css";
 import GNB from "../GNB/GNB";
 import LNB from "../LNB/LNB";
-import { bannerDetail } from "../../../scripts/firebase";
+import { bannerDetail, storage } from "../../../scripts/firebase";
+import { listAll, uploadBytes, ref as refs, getDownloadURL } from "firebase/storage";
 
 function Detail() {
   function NoBanner() {
-
     function MoveToBannerUpload(e) {
       window.location.replace('/corporation/banner/upload')
     }
@@ -28,12 +28,45 @@ function Detail() {
         </>
       );
   }
+
+
+
+
+
   
   function YesBanner() {
+    const [bannerName, setBannerName] = useState([]);
+    
+    const CheckDB = () => {
+      const listRef = refs(storage, 'gs://image-betting.appspot.com/');
 
-    function CheckDB(e) {
-      console.log(bannerDetail());
-    }
+      listAll(listRef)
+      .then((res) => {
+      res.prefixes.forEach((folderRef) => {
+  
+      });
+      res.items.forEach((itemRef) => {
+        getDownloadURL(refs(storage, 'gs://image-betting.appspot.com/' + itemRef.name))
+        .then((url) => {
+          const xhr = new XMLHttpRequest();
+          xhr.responseType = 'blob';
+          xhr.onload = (event) => {
+            const blob = xhr.response;
+          };
+          xhr.open('GET', url);
+          xhr.send();
+          const img = document.querySelector('img');
+          img.setAttribute('src', url);
+        })
+        .catch((error) => {
+          console.log(error)
+            });
+      
+      });
+    }).catch((error) => {
+      console.log(error)
+    });
+  }
     
     return (
       <>
@@ -45,7 +78,7 @@ function Detail() {
           </div>
           <div class="banner-detail" onClick={ CheckDB }>
             <div class="banner-detail-text">
-              <p>배너 대표 이미지</p>
+              <img ></img>
             </div>
           </div>
       </div>
