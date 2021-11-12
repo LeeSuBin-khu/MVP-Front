@@ -1,0 +1,56 @@
+.Funding_main{
+    position : relative;
+    
+}
+
+.Title{
+    text-align: center;
+}
+
+.Category{
+    position: static;
+    text-align:center;
+}
+
+.Funding_vote{
+    display:flex;
+    position : relative;
+    /* background-color: pink; */
+}
+.D_day {
+    text-align: center;
+}
+
+.Funding_MyPick{
+    /* padding-right : 20%; */
+    width : 40%;
+    /* margin-left : 50px; */
+}
+
+.Funding_PeoplePick{
+    /* padding-right : 20%; */
+    width : 40%;
+    margin-left : 50px;
+}
+
+.col-md-6 {
+    /* background-color: blueviolet; */
+    padding-top:30px;
+    padding-bottom: 30px;
+    /* margin:30px; */
+}
+
+.banner_pick{ 
+    position : relative;
+    left : 20%;
+    background-color: gray;
+    text-align: center;
+    padding: 30px;
+    padding-right : 70px;
+    width : 60%;
+    padding-left: 70px;
+}
+
+.col-md-6 p{
+    text-align: right;
+}

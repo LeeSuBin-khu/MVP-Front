@@ -13,6 +13,7 @@ import Home from "./pages/private/Home";
 import BannerBetting from "./pages/private/BannerBetting";
 import PrototypeTest from "./pages/private/PrototypeTest";
 import Survey from "./pages/private/Survey";
+import Mypage from "./pages/private/Mypage";
 
 //기업페이지
 import C_Main from "./pages/corporation/Dashboard/Dashboard";
@@ -36,6 +37,8 @@ export default function App() {
                     <Route path="/bb" element={<BannerBetting/>} />
                     <Route path="/pt" element={<PrototypeTest/>} />
                     <Route path="/survey" element={<Survey/>} />
+                    <Route path="/mypage" element={<Mypage/>} />
+
     
                     <Route exact path="/corporation/main" element={<C_Main/>} />
                     <Route exact path="/corporation/banner/main" element={<CB_Main/>} />

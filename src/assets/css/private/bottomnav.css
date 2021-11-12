@@ -1,0 +1,15 @@
+.bottom {
+    left: 0%;
+    right: 0%;
+    bottom: 0;
+    overflow: hidden;
+    /* position:fixed; */
+    width : 100%;
+    height: 30px;
+    
+    border: 1px solid black;
+}
+
+p {
+    float : right;
+}

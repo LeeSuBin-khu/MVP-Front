@@ -15,7 +15,7 @@ export default function NavMenu({name}) {
                 <Nav.Link href="/survey">Survey</Nav.Link>
                 <Button onClick={logout}>Sign Out</Button>
                 <p style={{position: 'absolute', right: '30px', top: '15px'}}>
-                    {name}님 환영합니다.</p>
+                    <Nav.Link href="/mypage">{name}님 환영합니다.</Nav.Link></p>
                 </Nav>
             </Navbar.Collapse>
         </Container>
