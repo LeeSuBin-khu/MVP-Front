@@ -64,3 +64,31 @@
     line-height: 21px;
     color: #000000;
 }
+
+.banner-images {
+    position: absolute;
+    width: 1000px;
+    height: 720px;
+
+    left: 24.22%;
+    right: 56.33%;
+    top: 29.44%;
+    bottom: 43.19%;
+    float: left;
+}
+
+.banner-image {
+    /* position: absolute; */
+    width: 249px;
+    height: 197px;
+
+    /* left: 24.22%;
+    right: 56.33%;
+    top: 29.44%;
+    bottom: 43.19%; */
+}
+
+ul li {
+    list-style:none;
+    float: left;
+}

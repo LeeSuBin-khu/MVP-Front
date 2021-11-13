@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "../../../assets/css/corporation/banner/detail.css";
 import GNB from "../GNB/GNB";
 import LNB from "../LNB/LNB";
-import { bannerDetail, storage, db, auth } from "../../../scripts/firebase";
-import { ref, onValue, get } from "firebase/database";
-import { listAll, uploadBytes, ref as refs, getDownloadURL } from "firebase/storage";
+import { storage, db, auth } from "../../../scripts/firebase";
+import { ref, onValue } from "firebase/database";
+import { listAll, ref as refs, getDownloadURL } from "firebase/storage";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 function Detail() {
@@ -41,28 +41,35 @@ function Detail() {
     const [user, loading, error] = useAuthState(auth);
     
     const CheckDB = () => {
-      var refff = (ref(db, 'users/' + user.uid));
-      onValue(refff, (snapshot) => {
+      let DATA_USER = "";
+      // let data_banner = "";
+
+      var userIdRef = ref(db, 'users/' + user.uid);
+      onValue(userIdRef, (snapshot) => {
         var data = snapshot.val();
-        console.log(data.uid);
+        //console.log(data.uid);
+        DATA_USER = data.uid;
       })
       
+      // const starCountRef = ref(db, 'Banner/Banner1');
+      // onValue(starCountRef, (snapshot) => {
+      //   const data = snapshot.val();
+      //   console.log(data.corp);
+      //   data_banner = data.corp;
+      // });
 
-      const starCountRef = ref(db, 'Banner/Banner1');
-      onValue(starCountRef, (snapshot) => {
-      const data = snapshot.val();
-      console.log(data);
-      });
-
-      const listRef = refs(storage, 'gs://image-betting.appspot.com/');
+      const listRef = refs(storage, `gs://image-betting.appspot.com/${DATA_USER}`);
       listAll(listRef)
       .then((res) => {
       res.prefixes.forEach((folderRef) => {
   
       });
       res.items.forEach((itemRef) => {
-        getDownloadURL(refs(storage, 'gs://image-betting.appspot.com/' + itemRef.name))
+        getDownloadURL(refs(storage, `gs://image-betting.appspot.com/${DATA_USER}/${itemRef.name}/`))
         .then((url) => {
+          setBannerName(prev => [...prev, url])
+          // console.log(bannerName)
+          // console.log(url)
           // const xhr = new XMLHttpRequest();
           // xhr.responseType = 'blob';
           // xhr.onload = (event) => {
@@ -70,9 +77,7 @@ function Detail() {
           // };
           // xhr.open('GET', url);
           // xhr.send();
-          setBannerName(prev => [...prev, url])
-          console.log(bannerName)
-          console.log(url)
+    
           // const img = document.querySelector('img');
           // const imgs = bannerName.map((name) => (img.setAttribute('src', name)));
           // img.setAttribute('src', bannerName[0]);
@@ -88,24 +93,22 @@ function Detail() {
     
 
   }
-  const banners = bannerName
-  const bannerList = banners.map((banner) => (<li><img src={banner} /></li>));
+  // const banners = bannerName
+  // const bannerList = banners.map((banner) => (<li><img className="banner-image" src={banner} /></li>));
     
     return (
       <>
       <GNB />
       <LNB />
-      <div class="Banner-Detail">
-          <div class="title">
+      <div className="Banner-Detail">
+          <div className="title" onClick={CheckDB}>
               <p>업로드한 배너</p>
           </div>
-          <div class="banner-detail" onClick={ CheckDB }>
-            <div class="banner-detail-text">
-              <ul>
-              {bannerList}
-              </ul>
-            </div>
-          </div>
+          <ul className="banner-images">
+              {bannerName.map((banner) => (
+                <li><img className="banner-image" src={banner} /></li>
+              ))}
+          </ul>
       </div>
       </>
     );
