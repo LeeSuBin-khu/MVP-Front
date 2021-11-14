@@ -39,16 +39,21 @@ function Detail() {
   function YesBanner() {
     const [bannerName, setBannerName] = useState([]);
     const [user, loading, error] = useAuthState(auth);
+    const [DATA_URL, setDATA_URL] = useState("");
     
     const CheckDB = () => {
       let DATA_USER = "";
-      // let data_banner = "";
+      // let DATA_URL = "";
+      
 
       var userIdRef = ref(db, 'users/' + user.uid);
       onValue(userIdRef, (snapshot) => {
         var data = snapshot.val();
-        //console.log(data.uid);
+        console.log(data.url);
         DATA_USER = data.uid;
+        // DATA_URL = data.url;
+        setDATA_URL(data.url)
+        // console.log(DATA_URL)
       })
       
       // const starCountRef = ref(db, 'Banner/Banner1');
@@ -58,38 +63,38 @@ function Detail() {
       //   data_banner = data.corp;
       // });
 
-      const listRef = refs(storage, `gs://image-betting.appspot.com/${DATA_USER}`);
-      listAll(listRef)
-      .then((res) => {
-      res.prefixes.forEach((folderRef) => {
+    //   const listRef = refs(storage, `gs://image-betting.appspot.com/${DATA_USER}`);
+    //   listAll(listRef)
+    //   .then((res) => {
+    //   res.prefixes.forEach((folderRef) => {
   
-      });
-      res.items.forEach((itemRef) => {
-        getDownloadURL(refs(storage, `gs://image-betting.appspot.com/${DATA_USER}/${itemRef.name}/`))
-        .then((url) => {
-          setBannerName(prev => [...prev, url])
-          // console.log(bannerName)
-          // console.log(url)
-          // const xhr = new XMLHttpRequest();
-          // xhr.responseType = 'blob';
-          // xhr.onload = (event) => {
-          //   const blob = xhr.response;
-          // };
-          // xhr.open('GET', url);
-          // xhr.send();
+    //   });
+    //   res.items.forEach((itemRef) => {
+    //     getDownloadURL(refs(storage, `gs://image-betting.appspot.com/${DATA_USER}/${itemRef.name}/`))
+    //     .then((url) => {
+    //       setBannerName(prev => [...prev, url])
+    //       // console.log(bannerName)
+    //       // console.log(url)
+    //       // const xhr = new XMLHttpRequest();
+    //       // xhr.responseType = 'blob';
+    //       // xhr.onload = (event) => {
+    //       //   const blob = xhr.response;
+    //       // };
+    //       // xhr.open('GET', url);
+    //       // xhr.send();
     
-          // const img = document.querySelector('img');
-          // const imgs = bannerName.map((name) => (img.setAttribute('src', name)));
-          // img.setAttribute('src', bannerName[0]);
-        })
-        .catch((error) => {
-          console.log(error)
-            });
+    //       // const img = document.querySelector('img');
+    //       // const imgs = bannerName.map((name) => (img.setAttribute('src', name)));
+    //       // img.setAttribute('src', bannerName[0]);
+    //     })
+    //     .catch((error) => {
+    //       console.log(error)
+    //         });
       
-      });
-    }).catch((error) => {
-      console.log(error)
-    });
+    //   });
+    // }).catch((error) => {
+    //   console.log(error)
+    // });
     
 
   }
@@ -105,9 +110,9 @@ function Detail() {
               <p>업로드한 배너</p>
           </div>
           <ul className="banner-images">
-              {bannerName.map((banner) => (
-                <li><img className="banner-image" src={banner} /></li>
-              ))}
+              {/* {bannerName.map((banner) => ( */}
+                <li><img className="banner-image" src={DATA_URL} /></li>
+              {/* ))} */}
           </ul>
       </div>
       </>
