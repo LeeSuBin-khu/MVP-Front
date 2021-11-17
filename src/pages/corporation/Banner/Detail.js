@@ -1,17 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../../assets/css/corporation/banner/detail.css";
 import GNB from "../GNB/GNB";
 import LNB from "../LNB/LNB";
-import { storage, db, auth } from "../../../scripts/firebase";
-import { ref, onValue } from "firebase/database";
-import { listAll, ref as refs, getDownloadURL } from "firebase/storage";
+import { db, auth } from "../../../scripts/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { ref, onValue } from "firebase/database";
+import { async } from "@firebase/util";
 
 function Detail() {
-  function NoBanner() {
-    function MoveToBannerUpload(e) {
-      window.location.replace('/corporation/banner/upload')
+    const [user, loading, error] = useAuthState(auth);
+    const [bannerUrl, setBannerUrl] = useState([]);
+    const [isBanner, setIsBanner] = useState(false);
+
+    function YesBanner(props) {
+        if(props.isBanner) {
+            return (
+            <>
+            <ul>
+            {bannerUrl.map((banner) => 
+            <li><img className="banner-image" src={banner} /></li> )}
+            </ul>
+            </>
+            );
+        } else {
+            return (
+                <></>
+            );
+        }
+
     }
+
+    const MoveToBannerUpload = (e) => {
+        window.location.replace('/corporation/banner/upload');
+    };
+
+    // useEffect(() => {
+    //     window.localStorage.setItem('uid', user.uid);
+    //   }, []);
+
+    useEffect( async () => {
+        if (loading) return;
+        try {
+            var userIdRef = ref(db, 'users/' + user.uid);
+                var num = 0
+                onValue(userIdRef, (snapshot) => {
+                var data = snapshot.val();
+                num = data.ROLE_CORP.count;
+                if(num != 0) {
+                    setBannerUrl(data.ROLE_CORP.banner);
+                    setIsBanner(true);
+                };
+            });
+        } catch (err) {
+            console.error(err);
+            alert(err.message);
+        }
+    }, [user, loading]);
 
     return (
         <>
@@ -27,109 +71,36 @@ function Detail() {
               </div>
             </div>
         </div>
+        <YesBanner isBanner={isBanner} />
         </>
       );
-  }
-
-
-
-
-
-  
-  function YesBanner() {
-    const [bannerName, setBannerName] = useState([]);
-    const [user, loading, error] = useAuthState(auth);
-    const [DATA_URL, setDATA_URL] = useState("");
-    
-    const CheckDB = () => {
-      let DATA_USER = "";
-      // let DATA_URL = "";
-      
-
-      var userIdRef = ref(db, 'users/' + user.uid);
-      onValue(userIdRef, (snapshot) => {
-        var data = snapshot.val();
-        console.log(data.url);
-        DATA_USER = data.uid;
-        // DATA_URL = data.url;
-        setDATA_URL(data.url)
-        // console.log(DATA_URL)
-      })
-      
-      // const starCountRef = ref(db, 'Banner/Banner1');
-      // onValue(starCountRef, (snapshot) => {
-      //   const data = snapshot.val();
-      //   console.log(data.corp);
-      //   data_banner = data.corp;
-      // });
-
-    //   const listRef = refs(storage, `gs://image-betting.appspot.com/${DATA_USER}`);
-    //   listAll(listRef)
-    //   .then((res) => {
-    //   res.prefixes.forEach((folderRef) => {
-  
-    //   });
-    //   res.items.forEach((itemRef) => {
-    //     getDownloadURL(refs(storage, `gs://image-betting.appspot.com/${DATA_USER}/${itemRef.name}/`))
-    //     .then((url) => {
-    //       setBannerName(prev => [...prev, url])
-    //       // console.log(bannerName)
-    //       // console.log(url)
-    //       // const xhr = new XMLHttpRequest();
-    //       // xhr.responseType = 'blob';
-    //       // xhr.onload = (event) => {
-    //       //   const blob = xhr.response;
-    //       // };
-    //       // xhr.open('GET', url);
-    //       // xhr.send();
-    
-    //       // const img = document.querySelector('img');
-    //       // const imgs = bannerName.map((name) => (img.setAttribute('src', name)));
-    //       // img.setAttribute('src', bannerName[0]);
-    //     })
-    //     .catch((error) => {
-    //       console.log(error)
-    //         });
-      
-    //   });
-    // }).catch((error) => {
-    //   console.log(error)
-    // });
-    
-
-  }
-  // const banners = bannerName
-  // const bannerList = banners.map((banner) => (<li><img className="banner-image" src={banner} /></li>));
-    
-    return (
-      <>
-      <GNB />
-      <LNB />
-      <div className="Banner-Detail">
-          <div className="title" onClick={CheckDB}>
-              <p>업로드한 배너</p>
-          </div>
-          <ul className="banner-images">
-              {/* {bannerName.map((banner) => ( */}
-                <li><img className="banner-image" src={DATA_URL} /></li>
-              {/* ))} */}
-          </ul>
-      </div>
-      </>
-    );
-  }
-
-  function BannerPage(props) {
-    const isBanner = props.isBanner;
-    if (isBanner) {
-      return <YesBanner />;
-    }
-    return <NoBanner />;
-  }
-
-  return(
-      <BannerPage isBanner={true} />
-  );
 }
 
 export default Detail;
+
+
+
+
+
+
+
+
+// const CheckBanner = async () => {
+    //     try {
+    //         var userIdRef = ref(db, 'users/' + user.uid);
+    //         var num = 0
+    //         onValue(userIdRef, (snapshot) => {
+    //           var data = snapshot.val();
+    //           num = data.ROLE_CORP.count;
+    //           if(num != 0) setBannerUrl(data.ROLE_CORP.banner);
+    //         })
+    //         if(num != 0) {
+    //             setIsBanner(true)
+    //             return true;
+    //         }
+    //           return false;
+    //     } catch (err) {
+    //       console.error(err);
+    //       alert(err.message);
+    //     }
+    //   };
