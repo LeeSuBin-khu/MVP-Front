@@ -1,94 +1,68 @@
-.Banner-Detail {
-    display: flex;
-    width: 1280px;
-    height: 720px;
-    background: #FFFFFF;
-}
-
-.title {
+.banner-add-text {
     position: absolute;
-    left: 24.22%;
-    right: 64.92%;
-    top: 20.14%;
-    bottom: 75.97%;
-    font-family: Roboto;
+    Height: 39.82px;
+    left: 18.61%;
+    right: 70.53%;
+    top: 6.73%;
+    bottom: 90.72%;
+    font-family: Noto Sans KR;
     font-style: normal;
-    font-weight: normal;
-    font-size: 24px;
-    line-height: 28px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
     color: #000000;
 }
 
 .banner-add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    width: 249px;
-    height: 197px;
-
-    left: 24.22%;
-    right: 56.33%;
-    top: 29.44%;
-    bottom: 43.19%;
-    background: #C4C4C4;
+    width: 542px;
+    height: 297px;  
+    left: 268px;
+    right: 37px;
+    top: 100px;
+    bottom: 70.9%;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.banner-add-text {
-    margin-top: 35%;
-    text-align: center;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 21px;
-    color: #000000;
-}
-
-.banner-detail {
+.Banner-Collection {
     position: absolute;
-    width: 249px;
-    height: 197px;
-
-    left: 24.22%;
-    right: 56.33%;
-    top: 29.44%;
-    bottom: 43.19%;
-    background: #C4C4C4;
+    width: 1200px;
+    height: 1011px;
+    left: 268px;
+    top: 492px;
 }
 
-.banner-detail-text {
-    margin-top: 35%;
-    text-align: center;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 21px;
-    color: #000000;
-}
-
-.banner-images {
+.banner-images{
     position: absolute;
-    width: 1000px;
-    height: 720px;
-
-    left: 24.22%;
-    right: 56.33%;
-    top: 29.44%;
-    bottom: 43.19%;
-    float: left;
+    top: 5%;
 }
 
 .banner-image {
-    /* position: absolute; */
-    width: 249px;
-    height: 197px;
-
-    /* left: 24.22%;
-    right: 56.33%;
-    top: 29.44%;
-    bottom: 43.19%; */
+    width: 542px;
+    height: 297px;
 }
 
 ul li {
     list-style:none;
     float: left;
+    margin-right: 33px;
+    margin-bottom: 34px;
+}
+
+.banner-detail-text {
+    position: absolute;
+    left: 2.5%;
+    right: 70.53%;
+    top: 0%;
+    bottom: 65.91%;
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+    color: #000000;
 }

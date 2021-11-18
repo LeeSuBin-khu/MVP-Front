@@ -5,10 +5,11 @@ import LNB from "../LNB/LNB";
 import { db, auth } from "../../../scripts/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { ref, onValue } from "firebase/database";
-import { async } from "@firebase/util";
+import NavMenu from "../../NavMenu";
 
 function Detail() {
     const [user, loading, error] = useAuthState(auth);
+    const [name, setName] = useState("");
     const [bannerUrl, setBannerUrl] = useState([]);
     const [isBanner, setIsBanner] = useState(false);
 
@@ -16,10 +17,15 @@ function Detail() {
         if(props.isBanner) {
             return (
             <>
-            <ul>
-            {bannerUrl.map((banner) => 
-            <li><img className="banner-image" src={banner} /></li> )}
-            </ul>
+            <div className="Banner-Collection">
+                <div className="banner-detail-text">업로드한 배너</div>
+                <div className="banner-images">
+                    <ul>
+                        {bannerUrl.map((banner) => 
+                        <li><img className="banner-image" src={banner} /></li> )}
+                    </ul>
+                </div>
+            </div>
             </>
             );
         } else {
@@ -49,6 +55,7 @@ function Detail() {
                 if(num != 0) {
                     setBannerUrl(data.ROLE_CORP.banner);
                     setIsBanner(true);
+                    setName(data.name)
                 };
             });
         } catch (err) {
@@ -59,19 +66,20 @@ function Detail() {
 
     return (
         <>
-        <GNB />
-        <LNB />
         <div className="Banner-Detail">
-            <div className="title">
-                <p>업로드한 배너</p>
-            </div>
+            <NavMenu name={name}/>
+            <LNB />
+            <div className="banner-add-text">배너 업로드</div>
             <div className="banner-add" onClick={ MoveToBannerUpload }>
-              <div className="banner-add-text">
-                <p>배너추가</p>
+              <div className="banner-add-icon">
+              <svg width="101" height="101" viewBox="0 0 101 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50.5 21.0417V79.9584" stroke="#C4C4C4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M21.0416 50.5H79.9583" stroke="#C4C4C4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
               </div>
             </div>
+            <YesBanner isBanner={isBanner} />
         </div>
-        <YesBanner isBanner={isBanner} />
         </>
       );
 }
