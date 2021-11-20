@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../../../assets/css/corporation/banner/detail.css";
-import GNB from "../GNB/GNB";
+// import GNB from "../GNB/GNB";
 import LNB from "../LNB/LNB";
 import { db, auth } from "../../../scripts/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { ref, onValue } from "firebase/database";
 import NavMenu from "../../NavMenu";
+import { getStorage, ref as refs, getDownloadURL } from "firebase/storage";
 
 function Detail() {
     const [user, loading, error] = useAuthState(auth);
@@ -21,8 +22,8 @@ function Detail() {
                 <div className="banner-detail-text">업로드한 배너</div>
                 <div className="banner-images">
                     <ul>
-                        {bannerUrl.map((banner) => 
-                        <li><img className="banner-image" src={banner} /></li> )}
+                        {bannerUrl.map((banner) =>
+                         <li><img className="banner-image" src={banner} onClick={MoveToBannerStatistic} /></li> )}
                     </ul>
                 </div>
             </div>
@@ -40,20 +41,33 @@ function Detail() {
         window.location.replace('/corporation/banner/upload');
     };
 
-    // useEffect(() => {
-    //     window.localStorage.setItem('uid', user.uid);
-    //   }, []);
+    const MoveToBannerStatistic = (e) => {
+        var bannerSrc = e.target.src;
+        var temp1 = bannerSrc.split('/');
+        var temp2 = temp1[7].split('?');
+        var bid = temp2[0];
+        window.location.replace(`/corporation/banner/statistic/${bid}`);
+    };
 
     useEffect( async () => {
+        const storage = getStorage();
         if (loading) return;
         try {
             var userIdRef = ref(db, 'users/' + user.uid);
-                var num = 0
                 onValue(userIdRef, (snapshot) => {
                 var data = snapshot.val();
-                num = data.ROLE_CORP.count;
+                var num = data.ROLE_CORP.count;
+                var url = data.ROLE_CORP.banner;
                 if(num != 0) {
-                    setBannerUrl(data.ROLE_CORP.banner);
+                    url.forEach(element => {
+                    getDownloadURL(refs(storage, element))
+                    .then((url) => {
+                        setBannerUrl(prev => [...prev, url])
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                      });
+                    }); 
                     setIsBanner(true);
                     setName(data.name)
                 };
@@ -69,6 +83,7 @@ function Detail() {
         <div className="Banner-Detail">
             <NavMenu name={name}/>
             <LNB />
+            <div className="Banner-Add">
             <div className="banner-add-text">배너 업로드</div>
             <div className="banner-add" onClick={ MoveToBannerUpload }>
               <div className="banner-add-icon">
@@ -77,6 +92,7 @@ function Detail() {
                 <path d="M21.0416 50.5H79.9583" stroke="#C4C4C4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               </div>
+            </div>
             </div>
             <YesBanner isBanner={isBanner} />
         </div>
