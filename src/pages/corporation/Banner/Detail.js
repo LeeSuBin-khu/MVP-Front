@@ -8,6 +8,7 @@ import { ref, onValue } from "firebase/database";
 import NavMenu from "../../NavMenu";
 import { getStorage, ref as refs, getDownloadURL } from "firebase/storage";
 
+
 function Detail() {
     const [user, loading, error] = useAuthState(auth);
     const [name, setName] = useState("");
@@ -45,7 +46,8 @@ function Detail() {
         var bannerSrc = e.target.src;
         var temp1 = bannerSrc.split('/');
         var temp2 = temp1[7].split('?');
-        var bid = temp2[0];
+        var temp3 = temp2[0].split('.');
+        var bid = temp3[0]+temp3[1];
         window.location.replace(`/corporation/banner/statistic/${bid}`);
     };
 
@@ -101,30 +103,3 @@ function Detail() {
 }
 
 export default Detail;
-
-
-
-
-
-
-
-
-// const CheckBanner = async () => {
-    //     try {
-    //         var userIdRef = ref(db, 'users/' + user.uid);
-    //         var num = 0
-    //         onValue(userIdRef, (snapshot) => {
-    //           var data = snapshot.val();
-    //           num = data.ROLE_CORP.count;
-    //           if(num != 0) setBannerUrl(data.ROLE_CORP.banner);
-    //         })
-    //         if(num != 0) {
-    //             setIsBanner(true)
-    //             return true;
-    //         }
-    //           return false;
-    //     } catch (err) {
-    //       console.error(err);
-    //       alert(err.message);
-    //     }
-    //   };

@@ -1,9 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../../assets/css/corporation/banner/result.css";
 import GNB from "../GNB/GNB";
 import LNB from "../LNB/LNB";
+import { db } from "../../../scripts/firebase";
+import { ref, onValue } from "firebase/database";
 
 function Result() {
+
+  useEffect(() => {
+    var url = window.location.href;
+    var bid = url.split('/')[6];
+    let bannerId = bid.replace('%2F', '/');
+    console.log(bannerId)
+    
+    var userIdRef = ref(db, `BannerCount/${bannerId}`);
+    
+    onValue(userIdRef, (snapshot) => {
+      var data = snapshot.val();
+      console.log(data);
+    })
+    }, []); 
+
   return (
     <>
     <GNB />

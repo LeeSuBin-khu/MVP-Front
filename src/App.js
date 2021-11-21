@@ -44,10 +44,12 @@ export default function App() {
                     <Route exact path="/corporation/banner/main" element={<CB_Main/>} />
                     <Route exact path="/corporation/banner/detail" element={<CB_Detail/>} />
                     <Route exact path="/corporation/banner/upload" element={<CB_Upload/>} />
-                    <Route exact path="/corporation/banner/result" element={<CB_Result/>} />
+                    {/* <Route exact path="/corporation/banner/result" element={<CB_Result/>} /> */}
                     <Route exact path="/corporation/prototype/main" element={<CP_Main/>} />
                     <Route exact path="/corporation/prototype/detail" element={<CP_Detail/>} />
                     <Route exact path="/corporation/prototype/upload" element={<CP_Upload/>} />
+
+                    <Route exact path="/corporation/banner/statistic/:id" element={<CB_Result/>} />
                 </Routes>
             </Router>
         </div>
