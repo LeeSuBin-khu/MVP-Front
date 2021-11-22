@@ -1,4 +1,5 @@
 
+
 import { Table } from 'react-bootstrap';
 import NavMenu from "../NavMenu";
 import React, { useEffect, useState } from "react";
@@ -52,6 +53,17 @@ function Mypage(){
         <>
 
             <NavMenu name={name}/>
+
+import React, { useState } from "react";
+import { Table } from 'react-bootstrap';
+import NavMenu from "../NavMenu";
+
+function Mypage(){
+
+    return(
+        <>
+            <NavMenu name="hi"/>
+
             <div classNam="point">
                 <span>My 포인트 내역</span>
                 <div className="row">

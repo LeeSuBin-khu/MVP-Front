@@ -13,9 +13,12 @@ import Home from "./pages/private/Home";
 import BannerBetting from "./pages/private/BannerBetting";
 import PrototypeTest from "./pages/private/PrototypeTest";
 import Survey from "./pages/private/Survey";
+
 import Role from "./pages/private/Role";
 import UserInform from "./pages/private/UserInform";
 import CorpInform from "./pages/private/CorpInform";
+import Mypage from "./pages/private/Mypage";
+
 import Mypage from "./pages/private/Mypage";
 
 
@@ -42,13 +45,21 @@ export default function App() {
                     <Route path="/bb" element={<BannerBetting/>} />
                     <Route path="/pt" element={<PrototypeTest/>} />
                     <Route path="/survey" element={<Survey/>} />
+
                     <Route path="/role" element={<Role/>} />
                     <Route path="/userinform" element={<UserInform/>} />
                     <Route path="/corpinform" element={<CorpInform/>} />
                     <Route path="/mypage" element={<Mypage/>} />
 
                     <Route exact path="/corporation/main" element={<CP_Home/>} />
-                    <Route exact path="/corporation/dashboard" element={<C_Main/>} />
+                   
+
+                    <Route path="/mypage" element={<Mypage/>} />
+
+    
+                    <Route exact path="/corporation/main" element={<C_Main/>} />
+                    <Route exact path="/corporation/banner/main" element={<CB_Main/>} />
+
                     <Route exact path="/corporation/banner/detail" element={<CB_Detail/>} />
                     <Route exact path="/corporation/banner/upload" element={<CB_Upload/>} />
                     <Route exact path="/corporation/banner/statistic/:id" element={<CB_Result/>} />

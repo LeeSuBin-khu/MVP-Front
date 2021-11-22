@@ -35,6 +35,7 @@
     margin-left : 50px;
 }
 
+
 /* .banner_pick{
     display: inline-block;
     position: relative;
@@ -72,10 +73,28 @@
     object-fit: cover; /* Equivalent of the background-size: cover; of a background-image */
     object-position: center;
     pointer-events: none;
+
+.col-md-6 {
+    /* background-color: blueviolet; */
+    padding-top:30px;
+    padding-bottom: 30px;
+    /* margin:30px; */
+}
+
+.banner_pick{ 
+    position : relative;
+    left : 20%;
+    background-color: gray;
+    text-align: center;
+    padding: 30px;
+    padding-right : 70px;
+    width : 60%;
+    padding-left: 70px;
 }
 
 .col-md-6 p{
     text-align: right;
+
 }
 
 .o_contents{
@@ -118,4 +137,3 @@ padding: 10px 5px;
 margin: auto;
 text-align: center;
 }
-
