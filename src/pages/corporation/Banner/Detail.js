@@ -59,8 +59,9 @@ function Detail() {
                 onValue(userIdRef, (snapshot) => {
                 var data = snapshot.val();
                 var num = data.ROLE_CORP.count;
-                var url = data.ROLE_CORP.banner;
+                
                 if(num != 0) {
+                    var url = data.ROLE_CORP.banner;
                     url.forEach(element => {
                     getDownloadURL(refs(storage, element))
                     .then((url) => {

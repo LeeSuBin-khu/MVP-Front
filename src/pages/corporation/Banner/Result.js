@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from "react";
-import "../../../assets/css/corporation/banner/result.css";
-import GNB from "../GNB/GNB";
-import LNB from "../LNB/LNB";
-import { db } from "../../../scripts/firebase";
+
+import React, { useState,useEffect } from "react";
+import {auth, db, storage} from "../../../scripts/firebase";
+import { Navigate } from "react-router";
 import { ref, onValue } from "firebase/database";
+
+import * as fbStorage from "firebase/storage";
+import "../../../assets/css/corporation/banner/result.css";
+import LNB from "../LNB/LNB";
+//import { FirebaseStorage } from "@firebase/storage-types";
 
 function Result() {
 
@@ -21,9 +25,79 @@ function Result() {
     })
     }, []); 
 
+
+/*
+import { jsxMemberExpression } from "@babel/types";
+
+function Result(props) {
+  const[Bannername,setBannername] = useState("props.banner")
+  const[Resultcount, setResultcount] =useState([
+    {
+      id : 'job',
+      teenager : 0,
+      student : 0,
+      worker : 0,
+      doctor :0
+    },
+    {
+      id : 'category',
+      it : 0,
+      marketing : 0,
+      service : 0,
+      finance : 0,
+      game : 0,
+      culture :0,
+      beauty :0,
+      sports : 0,
+      food : 0,
+      trip : 0,
+      medical :0,
+      fassion : 0,
+      environment :0,
+      etc :0
+
+    },
+    {
+      id : 'sex',
+      women : 0,
+      men :0
+    }
+    ]);
+
+  const storage = fbStorage.getStorage();
+
+  const Bannerstatic = async() =>{
+    try{
+      const BannerRef = ref(db,'Bannercount'+Bannername);
+      var snapshot = await get(BannerRef);
+      var data = snapshot.val();
+      if (data !=null){
+        for ()
+      }
+    }catch(err){
+      console.error(err);
+      alert("error");
+    }
+  };
+
+  function FetchBannerInfo(){
+    fbStorage.getDownloadURL(fbStorage.ref(storage,props.banner))
+    .then((url) =>{
+      var img = document.getElementById('take');
+      img.setAttribute('src',url);
+    })
+  }
+
+  
+
+  useEffect(()=>{
+    // if(loading) return;
+    // if(!user) return Navigate('/',{replace: true});
+    Bannerstatic();
+    fetchBannerInfo();
+  })*/
   return (
     <>
-    <GNB />
     <div class="Banner-Result">
     <LNB />
         <p class="title">펀딩결과</p>
@@ -48,4 +122,5 @@ function Result() {
   );
 }
 
-export default Result;
+
+export default Result;  

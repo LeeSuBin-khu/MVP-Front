@@ -1,3 +1,4 @@
+
 .Funding_main{
     position : relative;
     
@@ -17,6 +18,7 @@
     position : relative;
     /* background-color: pink; */
 }
+
 .D_day {
     text-align: center;
 }
@@ -32,6 +34,45 @@
     width : 40%;
     margin-left : 50px;
 }
+
+
+/* .banner_pick{
+    display: inline-block;
+    position: relative;
+    width: 100%;
+}
+
+.o_dummy{
+    margin-top: 40%;
+}
+
+.o_content{
+    position: absolute;
+    top:0;
+} */
+
+.banner_pick {
+    position: relative;
+    width: 100%; /* The size you want */
+}
+
+.banner_pick:after {
+    content: "";
+    display: block;
+    padding-bottom: 55%; /* The padding depends on the width, not on the height, so with a padding-bottom of 100% you will get a square */
+}
+
+.banner_pick .o_content {
+    position: absolute; /* Take your picture out of the flow */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0; /* Make the picture taking the size of it's parent */
+    width: 100%; /* This if for the object-fit */
+    height: 100%; /* This if for the object-fit */
+    object-fit: cover; /* Equivalent of the background-size: cover; of a background-image */
+    object-position: center;
+    pointer-events: none;
 
 .col-md-6 {
     /* background-color: blueviolet; */
@@ -53,4 +94,46 @@
 
 .col-md-6 p{
     text-align: right;
+
+}
+
+.o_contents{
+    margin: auto;
+    width: 60%;
+}
+
+.tr {
+    text-align: right;
+}
+
+.mr {
+    margin-right: 10px;
+}
+
+.ml {
+    margin-left: 10px;
+}
+
+.o_modal {
+    font-size: 12px;
+    background-color: antiquewhite;
+    width: 50%;
+    margin: auto;
+}
+.o_modal > .header {
+width: 100%;
+border-bottom: 1px solid gray;
+font-size: 18px;
+text-align: center;
+padding: 5px;
+}
+.o_modal > .content {
+width: 100%;
+padding: 10px 5px;
+}
+.o_modal > .actions {
+width: 100%;
+padding: 10px 5px;
+margin: auto;
+text-align: center;
 }

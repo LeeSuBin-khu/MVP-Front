@@ -1,0 +1,195 @@
+.flex{
+    display : flex;
+    width : 100%;
+}
+.Main_part{
+    width: 100%;
+}
+
+.row {
+    margin-top: 5%;
+    padding : 50px;
+    display: flex;
+    
+}
+
+.title_style {
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.title_detail {
+    float : right;
+    cursor: pointer;
+}
+
+.Dashboard_GNB{
+    width : 100%;
+    display: flex;
+    padding-top : 20px;
+    padding-left: 10px;
+}
+
+.left_float{
+    display:flex;
+    margin-left:auto;
+}
+
+.left_float span {
+    margin-left : 10px;
+    margin-right : 10px;
+    padding-left: 10px;
+    cursor: pointer;
+}
+.logout {
+    margin-left : 10px;
+    margin-right : 20px;
+    cursor: pointer;
+    background: #0A347F;
+    border-radius: 15.3505px;
+    padding-top:9px;
+    padding-left: 10px;   
+    padding-right: 10px;
+    color : white;   
+    font-size: 15px;
+}
+
+
+/* Dashboard */
+.Dashboard{
+    display: flex;
+    word-break: break-all;
+    height: auto;
+    width : 100%;  
+
+}
+
+.Dashboard > div {
+    background-color: rgba(10, 52, 127, 0.04);
+    
+    padding : 10px;
+    /* margin:auto; */
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+    border-radius: 15.3505px;
+    text-align: center;
+    padding-right: 20px;
+    padding-left: 25px;
+    padding-top : 30px;
+}
+.Dashboard_corpname{
+    width : 50%;
+    margin-right: 5%;
+    
+}
+.Dashboard_corpname h3{
+    text-align: left;
+}
+#category{
+    text-align: left;
+}
+.Dashboard_banner{
+    width : 30%;
+    margin-right: 5%;
+}
+
+.Dashboard_prototype{
+    width : 30%;
+    /* margin-right: 5%; */
+}
+
+
+.button {
+    float : right;
+    margin : 5px;
+    background:#0A347F ;
+    border-radius: 15.2505px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+/* Banner */
+.Banner{
+    position : relative;
+    padding: 50px;
+    
+}
+
+.Banner_detail{
+    position :relative;
+    background: #FFFFFF;
+    box-shadow: 0px 3.0701px 3.0701px rgba(0, 0, 0, 0.25);
+    border-radius: 15.3505px;
+    padding : 10px;
+}
+.Banner_img {
+    padding : 10px;
+    position: relative;
+    display: inline-block;
+}
+.Banner_text{
+    display : inline-block;
+    left : 40px;
+}
+
+
+
+
+/* Prototype */
+.Prototype{
+    /* position : relative; */
+    padding: 50px;
+}
+
+.Prototype_detail{
+    background: #FFFFFF;
+    box-shadow: 0px 3.0701px 3.0701px rgba(0, 0, 0, 0.25);
+    border-radius: 15.3505px;
+    padding : 10px;
+    display: flex;
+}
+
+.Prototype_img{
+    display: block;
+    padding : 10px;
+    width : 384px;
+    height: 326px;
+    margin : 40px;
+    /* margin-bottom: 0%; */
+    
+}
+.Prototype_review{
+    position: relative;
+    width:100%;
+    margin : 40px;
+}
+.Prototype_average {
+    position: relative;
+    text-align: center;
+}
+
+.Prototype_average h3{
+    font-size: 40px;
+}
+
+.border {
+    display: block;
+    height: auto;
+    border: 1.4613px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 58.4521px;
+    width: 100%;
+    padding: 20px;
+    padding-left:45px;
+    margin-top: 14px;
+}
+
+.border div {
+    font-size:12px;
+}

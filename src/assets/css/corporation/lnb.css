@@ -1,20 +1,41 @@
-.Left-Menu {
-    width: 257px;
-    height: 1324px;
-    left: 0px;
-    top: 96px;
-
-    
-    left: 0%;
-    right: 79.92%;
-    top: 6.76%;
-    bottom: 0%;
-
-    background: #FFFFFF;
-    border: 1px solid #000000;
+/* .Left-Menu:after{ clear: both; display: block; content: '' } */
+.logo img{
+    position :static;
+    margin-left : 20%;
 }
 
-.menu1 {
+
+.Left-Menu {
+    position :static;
+    width: 257px;
+    left: 0%;
+    bottom: 0%;
+    background: #FFFFFF;
+    border-right: 0.2px solid gray;
+}
+
+.content-menu{
+    position :relative;
+    margin-top : 30px;
+    font-weight: bolder;
+    left : -24px;
+}
+
+.content-menu > div{
+    position: static;
+    padding-top: 20px;
+    padding-left : 1000px;
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 58.4521px;
+}
+.content-menu > div:hover{
+    background-color: #0A347F;
+    color : white;
+}
+
+/* .menu1 {
     position: absolute;
     left: 2.89%;
     right: 90.16%;
@@ -82,4 +103,4 @@
     font-size: 24px;
     line-height: 28px;
     color: #000000;
-}
+} */
